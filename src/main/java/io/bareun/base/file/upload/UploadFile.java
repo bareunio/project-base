@@ -18,4 +18,12 @@ public interface UploadFile {
      * @return 저장된 파일명
      */
     String getStoredFileName();
+
+    String getStoredFilePath();
+
+    String getStoredPath();
+
+    String getExtension();
+
+    long getSize();
 }

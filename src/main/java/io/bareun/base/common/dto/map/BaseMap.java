@@ -2,6 +2,8 @@ package io.bareun.base.common.dto.map;
 
 import org.apache.commons.collections4.MapUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +11,9 @@ import java.util.Map;
 
 import static io.bareun.base.common.util.ObjectMapperUtils.convert;
 import static io.bareun.base.common.util.ObjectMapperUtils.convertList;
+import static java.time.format.DateTimeFormatter.ofPattern;
 import static org.apache.commons.text.CaseUtils.toCamelCase;
+import static org.springframework.util.StringUtils.hasText;
 
 /**
  * 키-값 쌍을 보관하고 조작하는 데 사용되는 DTO 맵 클래스입니다.
@@ -225,6 +229,64 @@ public class BaseMap extends HashMap<String, Object> {
      */
     public Integer getInteger(String key) {
         return MapUtils.getInteger(this, key);
+    }
+
+    /**
+     * 주어진 키에 해당하는 값을 지정된 형식으로 파싱하여 LocalDate 객체를 반환합니다.
+     * 값이 없거나 텍스트가 없는 경우 기본값을 반환합니다.
+     *
+     * @param key          값을 가져올 키
+     * @param format       날짜 형식
+     * @param defaultValue 기본값
+     * @return 파싱된 LocalDate 객체 또는 기본값
+     */
+    public LocalDate getDate(String key, String format, LocalDate defaultValue) {
+        if (!hasText(getString(key))) {
+            return defaultValue;
+        }
+
+        return LocalDate.parse(getString(key), ofPattern(format));
+    }
+
+    /**
+     * 주어진 키에 해당하는 값을 지정된 형식으로 파싱하여 LocalDate 객체를 반환합니다.
+     * 값이 없거나 텍스트가 없는 경우 null을 반환합니다.
+     *
+     * @param key    값을 가져올 키
+     * @param format 날짜 형식
+     * @return 파싱된 LocalDate 객체 또는 null
+     */
+    public LocalDate getDate(String key, String format) {
+        return getDate(key, format, null);
+    }
+
+    /**
+     * 주어진 키에 해당하는 값을 지정된 형식으로 파싱하여 LocalDateTime 객체를 반환합니다.
+     * 값이 없거나 텍스트가 없는 경우 기본값을 반환합니다.
+     *
+     * @param key          값을 가져올 키
+     * @param format       날짜 형식
+     * @param defaultValue 기본값
+     * @return 파싱된 LocalDateTime 객체 또는 기본값
+     */
+    public LocalDateTime getDateTime(String key, String format, LocalDateTime defaultValue) {
+        if (!hasText(getString(key))) {
+            return defaultValue;
+        }
+
+        return LocalDateTime.parse(getString(key), ofPattern(format));
+    }
+
+    /**
+     * 주어진 키에 해당하는 값을 지정된 형식으로 파싱하여 LocalDateTime 객체를 반환합니다.
+     * 값이 없거나 텍스트가 없는 경우 null을 반환합니다.
+     *
+     * @param key    값을 가져올 키
+     * @param format 날짜 형식
+     * @return 파싱된 LocalDateTime 객체 또는 null
+     */
+    public LocalDateTime getDateTime(String key, String format) {
+        return getDateTime(key, format, null);
     }
 
     /**
