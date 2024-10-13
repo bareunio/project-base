@@ -30,7 +30,7 @@ public class FileUtils {
         "txt", "csv", "log", // 텍스트 파일
         "jpg", "jpeg", "png", "gif", "bmp", "tiff", // 이미지 파일
         "mp4", "avi", "mov", "wmv", // 비디오 파일
-        "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx" // 문서 파일
+        "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "hwp" // 문서 파일
     );
 
     /**
