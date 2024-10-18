@@ -1,5 +1,6 @@
 package io.bareun.base.file.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import static org.springframework.util.StringUtils.hasText;
  * FileUtils 클래스는 파일 관련 유틸리티 기능을 제공합니다.
  * 파일 확장자 추출 및 업로드, 리소스 획득 기능을 포함합니다.
  */
+@Slf4j
 @Component
 public class FileUtils {
 
@@ -49,13 +51,7 @@ public class FileUtils {
             throw new IllegalArgumentException("fileName must not be empty");
         }
 
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        if (osName.contains("mac")) {
-            fileName = Normalizer.normalize(fileName, Normalizer.Form.NFC);
-        }
-
-        return fileName;
+        return Normalizer.normalize(fileName, Normalizer.Form.NFC);
     }
 
     /**
