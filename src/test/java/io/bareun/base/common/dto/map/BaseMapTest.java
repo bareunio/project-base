@@ -23,6 +23,7 @@ class BaseMapTest {
                 "    \"string_value\": \"formal_contents\",\n" +
                 "    \"long_value\": 1203405603,\n" +
                 "    \"double_value\": 1.2,\n" +
+                "    \"number_value\": 1,\n" +
                 "    \"integer_value\": 10,\n" +
                 "    \"map_value\" : {\n" +
                 "      \"hello_world\" : \"I'm project base\"\n" +
@@ -47,6 +48,10 @@ class BaseMapTest {
         assertThat(baseMap.getMap("searchMap")).isNotNull();
         assertThat(baseMap.getMap("searchMap").getString("stringValue")).isEqualTo("formal_contents");
         assertThat(baseMap.getMap("searchMap").getLong("longValue")).isEqualTo(1203405603);
+        assertThat(baseMap.getMap("searchMap").get("numberValue")).isInstanceOf(Long.class);
+        assertThat(baseMap.getMap("searchMap").get("numberValue")).isEqualTo(1L);
+        assertThat(baseMap.getMap("searchMap").getLong("numberValue")).isEqualTo(1L);
+        assertThat(baseMap.getMap("searchMap").getInteger("numberValue")).isEqualTo(1);
         assertThat(baseMap.getMap("searchMap").getDouble("doubleValue")).isEqualTo(1.2);
         assertThat(baseMap.getMap("searchMap").getInteger("integerValue")).isEqualTo(10);
         assertThat(baseMap.getMapByKeys("searchMap", "mapValue").getString("helloWorld")).isEqualTo("I'm project base");

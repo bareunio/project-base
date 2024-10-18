@@ -2,6 +2,7 @@ package io.bareun.base.common.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,8 @@ import java.util.List;
 @Component
 public class ObjectMapperUtils {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper()
+            .configure(DeserializationFeature.USE_LONG_FOR_INTS, true);
 
     /**
      * 주어진 JSON 문자열을 지정된 타입의 Java 객체로 변환합니다.
