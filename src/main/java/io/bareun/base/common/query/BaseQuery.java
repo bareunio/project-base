@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -19,23 +20,23 @@ public class BaseQuery {
         return sqlSession.selectOne(id);
     }
 
-    public int selectCount(String id, BaseMap parameters) {
+    public int selectCount(String id, Object parameters) {
         return sqlSession.selectOne(id, parameters);
     }
 
-    public BaseMap selectOne(String id) {
+    public Map selectOne(String id) {
         return sqlSession.selectOne(id);
     }
 
-    public BaseMap selectOne(String id, BaseMap parameters) {
+    public Map selectOne(String id, Object parameters) {
         return sqlSession.selectOne(id, parameters);
     }
 
-    public List<BaseMap> selectList(String id) {
+    public List<Map> selectList(String id) {
         return sqlSession.selectList(id);
     }
 
-    public List<BaseMap> selectList(String id, BaseMap parameters) {
+    public List<Map> selectList(String id, Object parameters) {
         return sqlSession.selectList(id, parameters);
     }
 
@@ -43,7 +44,7 @@ public class BaseQuery {
         return sqlSession.insert(id);
     }
 
-    public int insert(String id, BaseMap parameters) {
+    public int insert(String id, Object parameters) {
         return sqlSession.insert(id, parameters);
     }
 
@@ -51,7 +52,7 @@ public class BaseQuery {
         return sqlSession.update(id);
     }
 
-    public int update(String id, BaseMap parameters) {
+    public int update(String id, Object parameters) {
         return sqlSession.update(id, parameters);
     }
 
@@ -59,7 +60,7 @@ public class BaseQuery {
         return sqlSession.delete(id);
     }
 
-    public int delete(String id, BaseMap parameters) {
+    public int delete(String id, Object parameters) {
         return sqlSession.delete(id, parameters);
     }
 }
