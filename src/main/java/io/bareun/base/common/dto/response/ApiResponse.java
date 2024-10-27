@@ -1,6 +1,7 @@
 package io.bareun.base.common.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.bareun.base.exception.code.ErrorCode;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,34 @@ public class ApiResponse<T> {
         return ApiResponse.builder()
                 .code(code)
                 .message(message)
+                .result(result)
+                .build();
+    }
+
+    /**
+     * 실패 응답을 생성하는 메소드.
+     * @param errorCode
+     * @return
+     * @param <T>
+     */
+    public static <T> ApiResponse<?> fail(ErrorCode errorCode) {
+        return ApiResponse.builder()
+                .code(errorCode.getCode())
+                .message(errorCode.getMessage())
+                .build();
+    }
+
+    /**
+     * 실패 응답을 생성하는 메소드.
+     * @param errorCode
+     * @param result
+     * @return
+     * @param <T>
+     */
+    public static <T> ApiResponse<?> fail(ErrorCode errorCode, T result) {
+        return ApiResponse.builder()
+                .code(errorCode.getCode())
+                .message(errorCode.getMessage())
                 .result(result)
                 .build();
     }
