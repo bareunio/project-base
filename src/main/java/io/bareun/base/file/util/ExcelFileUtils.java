@@ -6,6 +6,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -69,6 +70,28 @@ public class ExcelFileUtils {
         style.setVerticalAlignment(VerticalAlignment.CENTER);
 
         return style;
+    }
+
+    /**
+     * 엑셀 파일을 읽어 지정된 타입의 데이터 리스트로 반환합니다.
+     *
+     * @param filePath 파일 경로
+     * @param type 반환할 데이터의 클래스 타입
+     * @param <T>  반환할 데이터의 타입
+     * @return 읽어온 데이터 리스트
+     */
+    public static <T> List<T> read(String filePath, Class<T> type) {
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            throw new IllegalStateException("Failed not exist file");
+        }
+
+        try (Workbook workbook = WorkbookFactory.create(file)) {
+            return readSheet(workbook.getSheetAt(0), type);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to read excel file", e);
+        }
     }
 
     /**
