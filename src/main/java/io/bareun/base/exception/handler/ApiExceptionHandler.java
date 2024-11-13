@@ -3,7 +3,6 @@ package io.bareun.base.exception.handler;
 import io.bareun.base.common.dto.response.ApiResponse;
 import io.bareun.base.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
-import org.egovframe.rte.fdl.cmmn.exception.EgovBizException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -59,19 +58,6 @@ public class ApiExceptionHandler {
     public ApiResponse<?> accessDeniedException(AccessDeniedException e) {
         log.error("ApiException accessDeniedException", e);
         return ApiResponse.fail(FORBIDDEN.value(), e.getMessage());
-    }
-
-    /**
-     * EgovBizException을 처리하는 메서드입니다.
-     *
-     * @param e 발생한 EgovBizException 객체
-     * @return ApiResponse 객체 (INTERNAL_SERVER_ERROR 상태 응답)
-     */
-    @ExceptionHandler(EgovBizException.class)
-    @ResponseStatus(INTERNAL_SERVER_ERROR)
-    public ApiResponse<?> egovBizException(EgovBizException e) {
-        log.error("ApiException EgovBizException", e);
-        return ApiResponse.fail(INTERNAL_SERVER_ERROR.value(), e.getMessage());
     }
 
     /**
