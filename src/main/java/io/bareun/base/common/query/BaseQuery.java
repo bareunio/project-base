@@ -1,6 +1,5 @@
 package io.bareun.base.common.query;
 
-import io.bareun.base.common.dto.map.BaseMap;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
