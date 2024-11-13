@@ -1,6 +1,5 @@
 package io.bareun.base.common.query;
 
-import io.bareun.base.common.dto.map.BaseMap;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -24,19 +23,19 @@ public class BaseQuery {
         return sqlSession.selectOne(id, parameters);
     }
 
-    public Map selectOne(String id) {
+    public Map<String, Object> selectOne(String id) {
         return sqlSession.selectOne(id);
     }
 
-    public Map selectOne(String id, Object parameters) {
+    public Map<String, Object> selectOne(String id, Object parameters) {
         return sqlSession.selectOne(id, parameters);
     }
 
-    public List<Map> selectList(String id) {
+    public List<Map<String, Object>> selectList(String id) {
         return sqlSession.selectList(id);
     }
 
-    public List<Map> selectList(String id, Object parameters) {
+    public List<Map<String, Object>> selectList(String id, Object parameters) {
         return sqlSession.selectList(id, parameters);
     }
 
