@@ -29,7 +29,7 @@ public class BusinessException extends RuntimeException {
      * @param errorCode 에러 코드
      */
     public BusinessException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
+        super(errorCode.getFormattedMessage());
         this.errorCode = errorCode;
     }
 
@@ -41,7 +41,7 @@ public class BusinessException extends RuntimeException {
      * @param args      포맷팅에 사용될 인자들
      */
     public BusinessException(ErrorCode errorCode, Object... args) {
-        super(String.format(errorCode.getMessage(), args));
+        super(errorCode.getFormattedMessage(args));
         this.errorCode = errorCode;
     }
 }
