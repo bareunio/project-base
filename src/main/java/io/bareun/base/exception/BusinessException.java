@@ -4,6 +4,8 @@ import io.bareun.base.exception.code.BaseErrorCode;
 import io.bareun.base.exception.code.ErrorCode;
 import lombok.Getter;
 
+import static io.bareun.base.common.util.FormatUtils.formatMessage;
+
 /**
  * BusinessException은 비즈니스 로직에서 발생할 수 있는 예외를 나타내는 클래스입니다.
  * RuntimeException을 상속받아 unchecked 예외로 정의되어 있습니다.
@@ -29,7 +31,7 @@ public class BusinessException extends RuntimeException {
      * @param errorCode 에러 코드
      */
     public BusinessException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
+        super(formatMessage(errorCode.getMessage()));
         this.errorCode = errorCode;
     }
 
@@ -41,7 +43,7 @@ public class BusinessException extends RuntimeException {
      * @param args      포맷팅에 사용될 인자들
      */
     public BusinessException(ErrorCode errorCode, Object... args) {
-        super(String.format(errorCode.getMessage(), args));
+        super(formatMessage(errorCode.getMessage(), args));
         this.errorCode = errorCode;
     }
 }
